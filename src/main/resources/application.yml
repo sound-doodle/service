@@ -1,0 +1,23 @@
+server:
+  error:
+    include-message: always
+  port: 8282
+  servlet:
+    context-path: /sound-doodle
+  forward-headers-strategy: native
+
+spring:
+  datasource:
+    url: jdbc:derby:sound-doodle-db;create=true;collation=TERRITORY_BASED:PRIMARY
+  jpa:
+    database-platform: org.hibernate.dialect.DerbyTenSevenDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: docs/sql/ddl.sql
