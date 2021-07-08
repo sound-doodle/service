@@ -8,7 +8,7 @@ The project proposal and starter documentation was written by Lee Scroggins.
 
 ### Source Code
 
-2021 Kelley Bonnevile, Lee Scroggins, Victor Perez
+&copy; 2021 Kelley Bonneville, Lee Scroggins, Victor Perez
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
