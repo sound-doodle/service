@@ -26,10 +26,7 @@ public class SoundSample {
   private Date timeStamp;
 
   @Enumerated(EnumType.ORDINAL)
-  private Enum sampleType;
-  public enum SampleType {
-    DRUM, KEYBOARD
-  }
+  private SampleType sampleType;
 
   @Column(nullable = false, updatable = false)
   private String sampleFile;
@@ -46,11 +43,11 @@ public class SoundSample {
     return timeStamp;
   }
 
-  public Enum getSampleType() {
+  public SampleType getSampleType() {
     return sampleType;
   }
 
-  public void setSampleType(Enum sampleType) {
+  public void setSampleType(SampleType sampleType) {
     this.sampleType = sampleType;
   }
 
@@ -69,4 +66,9 @@ public class SoundSample {
   public void setSampleName(String sampleName) {
     this.sampleName = sampleName;
   }
+
+  public enum SampleType {
+    DRUM, KEYBOARD
+  }
+
 }
