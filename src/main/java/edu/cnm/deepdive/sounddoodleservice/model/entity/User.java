@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(
     name = "user_profile",
