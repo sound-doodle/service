@@ -1,12 +1,17 @@
 package edu.cnm.deepdive.sounddoodleservice.model.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,6 +53,16 @@ public class User {
   @Column(nullable = false)
   private Date connected;
 
+  @OneToMany(mappedBy = "trackCreator", fetch = FetchType.LAZY,
+      cascade = {CascadeType.ALL})
+  @NonNull
+  private final List<SongTrack> trackOriginated = new LinkedList<>();
+
+  @OneToMany(mappedBy = "projectCreator", fetch = FetchType.LAZY,
+      cascade = {CascadeType.ALL})
+  @NonNull
+  private final List<SongProject> projectOriginated = new LinkedList<>();
+
   @NonNull
   public Long getId() {
     return id;
@@ -85,5 +100,15 @@ public class User {
 
   public void setConnected(@NonNull Date connected) {
     this.connected = connected;
+  }
+
+  @NonNull
+  public List<SongTrack> getTrackOriginated() {
+    return trackOriginated;
+  }
+
+  @NonNull
+  public List<SongProject> getProjectOriginated() {
+    return projectOriginated;
   }
 }
