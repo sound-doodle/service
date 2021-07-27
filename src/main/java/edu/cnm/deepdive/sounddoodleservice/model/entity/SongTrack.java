@@ -1,6 +1,8 @@
 package edu.cnm.deepdive.sounddoodleservice.model.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
@@ -50,6 +55,13 @@ public class SongTrack {
   @NonNull
   private User trackCreator;
 
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userTracks")
+  @OrderBy("sampleName ASC")
+  private final List<SoundSample> userSamples = new LinkedList<>();
+
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  private SongProject songProject;
+
   public Long getId() {
     return id;
   }
@@ -85,4 +97,9 @@ public class SongTrack {
   public void setEndTime(@NonNull Date endTime) {
     this.endTime = endTime;
   }
+
+  public List<SoundSample> getUserSamples() {
+    return userSamples;
+  }
+
 }
