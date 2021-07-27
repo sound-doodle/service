@@ -2,6 +2,12 @@
 
 Service project for capstone project.
 
+## Team Members
+
+* Bonneville, Kelley
+* Perez, Victor
+* Scroggins, Lee
+
 ## Copyright & license information
 
 The project proposal and starter documentation was written by Lee Scroggins.
