@@ -20,7 +20,7 @@ public class SongProject {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "song_project_id", nullable = false, updatable = false)
+  @Column(name = "project_id", nullable = false, updatable = false)
   private Long id;
 
   @Column(nullable = false)

@@ -16,7 +16,7 @@ public class SongTrack {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "song_track_id", nullable = false, updatable = false)
+  @Column(name = "track_id", nullable = false, updatable = false)
   private Long id;
 
   @CreationTimestamp
