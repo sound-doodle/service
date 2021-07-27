@@ -53,19 +53,23 @@ public class User {
   @Column(nullable = false)
   private Date connected;
 
-  @OneToMany(mappedBy = "trackCreator", fetch = FetchType.LAZY,
+  @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY,
       cascade = {CascadeType.ALL})
   @NonNull
-  private final List<SongTrack> trackOriginated = new LinkedList<>();
+  private final List<Track> tracksCreated = new LinkedList<>();
 
-  @OneToMany(mappedBy = "projectCreator", fetch = FetchType.LAZY,
+  @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY,
       cascade = {CascadeType.ALL})
   @NonNull
-  private final List<SongProject> projectOriginated = new LinkedList<>();
+  private final List<Project> projectsCreated = new LinkedList<>();
 
-  @NonNull
   public Long getId() {
     return id;
+  }
+
+  @NonNull
+  public Date getCreated() {
+    return created;
   }
 
   @NonNull
@@ -73,8 +77,7 @@ public class User {
     return userName;
   }
 
-  @NonNull
-  public void setUserName(String userName) {
+  public void setUserName(@NonNull String userName) {
     this.userName = userName;
   }
 
@@ -83,14 +86,8 @@ public class User {
     return oauthKey;
   }
 
-  @NonNull
-  public void setOauthKey(String oauthKey) {
+  public void setOauthKey(@NonNull String oauthKey) {
     this.oauthKey = oauthKey;
-  }
-
-  @NonNull
-  public Date getCreated() {
-    return created;
   }
 
   @NonNull
@@ -103,12 +100,12 @@ public class User {
   }
 
   @NonNull
-  public List<SongTrack> getTrackOriginated() {
-    return trackOriginated;
+  public List<Track> getTracksCreated() {
+    return tracksCreated;
   }
 
   @NonNull
-  public List<SongProject> getProjectOriginated() {
-    return projectOriginated;
+  public List<Project> getProjectsCreated() {
+    return projectsCreated;
   }
 }

@@ -21,76 +21,83 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @Entity
-public class SoundSample {
+public class Sample {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "sound_sample_id", nullable = false, updatable = false)
+  @Column(name = "sample_id", nullable = false, updatable = false)
   private Long id;
 
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
   @Column(nullable = false, updatable = false)
   @NonNull
-  private Date timeStamp;
+  private Date created;
 
   @Enumerated(EnumType.ORDINAL)
+  @Column(nullable = false, updatable = false)
   @NonNull
-  private SampleType sampleType;
+  private SampleType type;
 
   @Column(nullable = false, updatable = false)
   @NonNull
-  private String sampleFile;
+  private String file;
 
-  @Column(nullable = true, updatable = false)
+  @Column(nullable = false, updatable = false)
   @NonNull
-  private String sampleName;
+  private String name;
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-  @JoinTable(name = "user_track", joinColumns = {@JoinColumn(name = "sound_sample_id", nullable = false, updatable = false)},
-  inverseJoinColumns = {@JoinColumn(name = "track_id", nullable = false, updatable = false)}
+  @JoinTable(
+      name = "sample_track",
+      joinColumns = {
+          @JoinColumn(name = "sample_id", nullable = false, updatable = false)
+      },
+      inverseJoinColumns = {
+          @JoinColumn(name = "track_id", nullable = false, updatable = false)
+      }
   )
-  private final List<SongTrack> userTracks = new LinkedList<>();
+  private final List<Track> tracks = new LinkedList<>();
 
   public Long getId() {
     return id;
   }
 
   @NonNull
-  public Date getTimeStamp() {
-    return timeStamp;
+  public Date getCreated() {
+    return created;
   }
 
   @NonNull
-  public SampleType getSampleType() {
-    return sampleType;
+  public SampleType getType() {
+    return type;
   }
 
-  public void setSampleType(
-      @NonNull SampleType sampleType) {
-    this.sampleType = sampleType;
-  }
-
-  @NonNull
-  public String getSampleFile() {
-    return sampleFile;
-  }
-
-  public void setSampleFile(@NonNull String sampleFile) {
-    this.sampleFile = sampleFile;
+  public void setType(
+      @NonNull SampleType type) {
+    this.type = type;
   }
 
   @NonNull
-  public String getSampleName() {
-    return sampleName;
+  public String getFile() {
+    return file;
   }
 
-  public void setSampleName(@NonNull String sampleName) {
-    this.sampleName = sampleName;
+  public void setFile(@NonNull String sampleFile) {
+    this.file = sampleFile;
   }
 
-  public List<SongTrack> getUserTracks() {
-    return userTracks;
+  @NonNull
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@NonNull String sampleName) {
+    this.name = sampleName;
+  }
+
+  public List<Track> getTracks() {
+    return tracks;
   }
 
   public enum SampleType {
