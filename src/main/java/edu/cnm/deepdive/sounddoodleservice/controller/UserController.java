@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.sounddoodleservice;
+package edu.cnm.deepdive.sounddoodleservice.controller;
 
 import edu.cnm.deepdive.sounddoodleservice.model.entity.User;
 import org.springframework.http.MediaType;
