@@ -5,6 +5,7 @@ import edu.cnm.deepdive.sounddoodleservice.model.entity.User;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +17,7 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   private final UserRepository repository;
 
-
+  @Autowired
   public UserService(UserRepository repository) {
     this.repository = repository;
   }
