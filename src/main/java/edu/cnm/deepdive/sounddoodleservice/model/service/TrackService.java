@@ -17,8 +17,6 @@ public class TrackService {
     this.repository = repository;
   }
 
-  Stream<Project> getUserProjects(User user) {
-    return repository.findAllById()
-  }
+
 
 }

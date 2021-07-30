@@ -18,6 +18,9 @@ import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
+/**
+ *  This encapsulates the security and verification for the server.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -30,10 +33,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Value("${spring.security.oauth2.resourceserver.jwt.client-id}")
   private String clientId;
 
+  /**
+   * provides and instance of the user service to aid authorization.
+   * @param userService
+   */
   public SecurityConfiguration(UserService userService) {
     this.userService = userService;
   }
 
+  /**
+   * This gathers the users ID token and will not allow access if the user cannot gain verification.
+   * @param http
+   * @throws Exception
+   */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
@@ -42,6 +54,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .jwtAuthenticationConverter(userService);
   }
 
+  /**
+   * Returns the authentication for the user.
+   * @return
+   */
   @Bean  public JwtDecoder jwtDecoder() {
     NimbusJwtDecoder decoder = JwtDecoders.fromIssuerLocation(issuerUri);
     OAuth2TokenValidator<Jwt> audienceValidator = new JwtClaimValidator<List<String>>(JwtClaimNames.AUD, (aud) -> aud.contains(clientId));

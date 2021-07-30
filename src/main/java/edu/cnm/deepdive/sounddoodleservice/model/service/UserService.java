@@ -17,11 +17,21 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
 
   private final UserRepository repository;
 
+  /**
+   * Initializes service with an instance of {@link UserRepository}.
+   * @param repository Provider of CRUD operations for {@link User} entities.
+   */
   @Autowired
   public UserService(UserRepository repository) {
     this.repository = repository;
   }
 
+  /**
+   * Searches for a user by oauthkey and creates user if none exists.
+   * @param oauthKey Unique Open ID Identifier
+   * @param userName Display name provided from the authetication provider
+   * @return Retrieved or new created user
+   */
   public User getOrCreate(String oauthKey, String userName) {
     return repository.findFirstByOauthKey(oauthKey)
         .map((user) -> {
@@ -37,6 +47,12 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
     });
   }
 
+  /**
+   * Exchanges a validated {@link Jwt} for a {@link UsernamePasswordAuthenticationToken} containing
+   * an instance of user.
+   * @param jwt Decrypted ID Token from authentication provider.
+   * @return Created token containing user instance.
+   */
   @Override
   public UsernamePasswordAuthenticationToken convert(Jwt jwt) {
     Collection<SimpleGrantedAuthority> grants = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));

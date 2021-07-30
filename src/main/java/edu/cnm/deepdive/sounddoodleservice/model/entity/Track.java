@@ -18,6 +18,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
+/**
+ * Encapsulates the tracks of the service.
+ */
 @Entity
 public class Track {
 
@@ -46,33 +49,61 @@ public class Track {
   @NonNull
   private Project project;
 
+  /**
+   *  Returns unique ID of the track.
+   * @return
+   */
   public Long getId() {
     return id;
   }
 
+  /**
+   *  Returns date track is created.
+   * @return
+   */
   @NonNull
   public Date getCreated() {
     return created;
   }
 
+  /**
+   *  Returns the creater of the Track.
+   * @return
+   */
   @NonNull
   public User getCreator() {
     return creator;
   }
 
+  /**
+   *
+   * @param creator
+   */
   public void setCreator(@NonNull User creator) {
     this.creator = creator;
   }
 
+  /**
+   *
+   * @return
+   */
   public List<Sample> getSamples() {
     return samples;
   }
 
+  /**
+   *
+   * @return
+   */
   @NonNull
   public Project getProject() {
     return project;
   }
 
+  /**
+   *
+   * @param project
+   */
   public void setProject(@NonNull Project project) {
     this.project = project;
   }

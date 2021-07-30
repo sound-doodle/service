@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.sounddoodleservice.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +21,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
+/**
+ * Encapuslates a user of the service.
+ */
 @Entity
 @Table(
     name = "user_profile",
@@ -57,18 +61,28 @@ public class User {
   @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY,
       cascade = {CascadeType.ALL})
   @NonNull
+  @JsonIgnore
   private final List<Track> tracksCreated = new LinkedList<>();
 
   @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY,
       cascade = {CascadeType.ALL})
   @OrderBy("name ASC")
   @NonNull
+  @JsonIgnore
   private final List<Project> projectsCreated = new LinkedList<>();
 
+  /**
+   * Returns unique identifier of a user.
+   * @return
+   */
   public Long getId() {
     return id;
   }
 
+  /**
+   * Returns date of creation.
+   * @return
+   */
   @NonNull
   public Date getCreated() {
     return created;
@@ -79,33 +93,58 @@ public class User {
     return userName;
   }
 
+  /**
+   * Returns Users user name.
+   * @param userName
+   */
   public void setUserName(@NonNull String userName) {
     this.userName = userName;
   }
 
+  /**
+   * Returns authentication oauth key of a user.
+   * @return
+   */
   @NonNull
   public String getOauthKey() {
     return oauthKey;
   }
 
+
   public void setOauthKey(@NonNull String oauthKey) {
     this.oauthKey = oauthKey;
   }
 
+  /**
+   * Returns the date/time user connects to service.
+   * @return
+   */
   @NonNull
   public Date getConnected() {
     return connected;
   }
 
+  /**
+   *
+   * @param connected
+   */
   public void setConnected(@NonNull Date connected) {
     this.connected = connected;
   }
 
+  /**
+   *
+   * @return
+   */
   @NonNull
   public List<Track> getTracksCreated() {
     return tracksCreated;
   }
 
+  /**
+   *
+   * @return
+   */
   @NonNull
   public List<Project> getProjectsCreated() {
     return projectsCreated;

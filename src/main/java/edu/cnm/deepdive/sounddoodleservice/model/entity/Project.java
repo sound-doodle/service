@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.sounddoodleservice.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.NonNull;
 
-
+/**
+ *  Encapsulates the Project of the service.
+ */
 @Entity
 public class Project {
 
@@ -44,37 +47,65 @@ public class Project {
   private User creator;
 
   @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//  @OrderBy("name ASC")
   @NonNull
+  @JsonIgnore
   private final List<Track> tracks = new LinkedList<>();
 
+  /**
+   *  Returns the unique ID of the Project.
+   * @return
+   */
   public Long getId() {
     return id;
   }
 
+  /**
+   * Returns the date the project is created.
+   * @return
+   */
   @NonNull
   public Date getCreated() {
     return created;
   }
 
+  /**
+   *  Returns the name of the Project.
+   * @return
+   */
   @NonNull
   public String getName() {
     return name;
   }
 
+  /**
+   *
+   * @param name
+   */
   public void setName(@NonNull String name) {
     this.name = name;
   }
 
+  /**
+   *
+   * @return
+   */
   @NonNull
   public User getCreator() {
     return creator;
   }
 
+  /**
+   *
+   * @param creator
+   */
   public void setCreator(@NonNull User creator) {
     this.creator = creator;
   }
 
+  /**
+   *
+   * @return
+   */
   @NonNull
   public List<Track> getTracks() {
     return tracks;
