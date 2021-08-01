@@ -2,7 +2,7 @@ package edu.cnm.deepdive.sounddoodleservice.controller;
 
 import edu.cnm.deepdive.sounddoodleservice.model.entity.Project;
 import edu.cnm.deepdive.sounddoodleservice.model.entity.User;
-import edu.cnm.deepdive.sounddoodleservice.model.service.ProjectService;
+import edu.cnm.deepdive.sounddoodleservice.service.ProjectService;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
