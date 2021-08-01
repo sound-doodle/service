@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.sounddoodleservice.model.service;
+package edu.cnm.deepdive.sounddoodleservice.service;
 
 import edu.cnm.deepdive.sounddoodleservice.model.dao.UserRepository;
 import edu.cnm.deepdive.sounddoodleservice.model.entity.User;

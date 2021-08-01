@@ -1,7 +1,6 @@
 package edu.cnm.deepdive.sounddoodleservice.controller;
 
 import edu.cnm.deepdive.sounddoodleservice.model.entity.Sample;
-import edu.cnm.deepdive.sounddoodleservice.model.entity.Sample.SampleType;
 import edu.cnm.deepdive.sounddoodleservice.model.entity.User;
 import edu.cnm.deepdive.sounddoodleservice.model.service.SampleService;
 import java.net.URI;
